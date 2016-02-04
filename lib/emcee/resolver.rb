@@ -26,7 +26,7 @@ module Emcee
     # Indicate if an asset should be inlined or not. References to files at an
     # external web address, for example, should not be inlined.
     def should_inline?(path)
-      path !~ /\A\/\//
+      path !~ /(\A|\:)\/\//
     end
 
     def absolute_path(path)

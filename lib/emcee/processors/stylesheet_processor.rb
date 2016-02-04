@@ -16,8 +16,8 @@ module Emcee
 
       def inline_styles(doc)
         doc.style_references.each do |node|
+          next unless @resolver.should_inline?(node.path)
           path = @resolver.absolute_path(node.path)
-          return unless @resolver.should_inline?(path)
           content = @resolver.evaluate(path)
           node.replace("style", content)
           @resolver.depend_on_asset(path)

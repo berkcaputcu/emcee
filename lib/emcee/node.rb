@@ -24,11 +24,11 @@ module Emcee
     private
 
     def href
-      @parser_node.attribute("href")
+      @parser_node.attribute("href").try(:value)
     end
 
     def src
-      @parser_node.attribute("src")
+      @parser_node.attribute("src").try(:value)
     end
 
     def shim

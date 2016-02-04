@@ -16,8 +16,8 @@ module Emcee
 
       def inline_scripts(doc)
         doc.script_references.each do |node|
+          next unless @resolver.should_inline?(node.path)
           path = @resolver.absolute_path(node.path)
-          return unless @resolver.should_inline?(path)
           script = @resolver.evaluate(path)
           node.replace("script", escape_with_slash(script))
           @resolver.depend_on_asset(path)
